@@ -1,0 +1,20 @@
+# Passpage
+
+> Passpage is a consent layer between people and apps: individuals save structured onboarding data (name, email, addresses) once and grant apps field-level, revocable access to it, so people stop re-entering the same information into every signup form and developers stop building onboarding data-collection forms from scratch.
+
+Passpage is complementary to OAuth/OIDC, not a replacement for it. OAuth/OIDC answers "who is this person"; Passpage answers "here is this person's structured onboarding data, with their explicit per-field consent." The handshake follows a three-step OAuth-style pattern: a partner app requests authorization (naming required and optional fields), Passpage redirects back with a short-lived single-use code, and the partner's backend exchanges that code server-to-server for only the approved fields.
+
+Passpage is pre-launch as of August 2026. There is no live public signup yet — the current site is an early-access waitlist. Built by OuterCircle Labs.
+
+## Product
+
+- [Passpage landing page](https://passpage.outercirclelab.com): overview, how the authorize/redirect/exchange handshake works, and early-access signup.
+- [Terms of Service](https://passpage.outercirclelab.com/terms): usage terms for the Passpage platform.
+- [Privacy Policy](https://passpage.outercirclelab.com/privacy): what data Passpage collects and how it is used, including an explicit statement that revoking a consent grant stops future access but does not delete data an app already received.
+- [Data Retention Policy](https://passpage.outercirclelab.com/data-retention): how long Passpage retains account data, consent records, and audit logs.
+
+## Notes
+
+- Passpage does not currently offer a public API, SDK, or developer documentation — these do not exist yet and should not be assumed or linked to. Developer access is part of the product but is not live during the pre-launch/waitlist stage.
+- Passpage never sells or shares user data with third parties outside of a user's own explicit, per-field consent grants.
+- OuterCircle Labs is the studio building Passpage; the current subdomain is passpage.outercirclelab.com under the root domain outercirclelab.com.
