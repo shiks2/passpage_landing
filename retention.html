@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PassPage Data Retention Policy</title>
+<meta name="description" content="PassPage Data Retention Policy aligned with DPDP Section 8(6).">
+<style>
+:root{--bg:#0b0b0d;--card:#111116;--line:#27272f;--text:#f4f4f5;--muted:#a1a1aa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.65}
+.container{max-width:1024px;margin:0 auto;padding:32px 20px 56px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+h1,h2{line-height:1.25} h1{margin:0 0 12px;font-size:32px} h2{margin:28px 0 10px;font-size:22px}
+p,li,td,th{color:var(--muted)} strong{color:var(--text)} ul{padding-left:20px}
+.meta{margin-top:10px;color:var(--muted);font-size:14px}
+.back{display:inline-block;margin-bottom:14px;color:var(--text);text-decoration:none}
+.back:hover{text-decoration:underline}
+table{width:100%;border-collapse:collapse;margin-top:14px}
+th,td{border:1px solid var(--line);padding:10px;vertical-align:top;font-size:14px}
+th{color:var(--text);text-align:left}
+</style>
+</head>
+<body>
+<main class="container">
+  <a class="back" href="index.html">Back to Home</a>
+  <section class="card">
+    <h1>Data Retention Policy</h1>
+    <p><strong>Company:</strong> PassPage Technologies Pvt. Ltd.</p>
+    <p><strong>Effective Date:</strong> August 11, 2026</p>
+    <p><strong>Version:</strong> v1.0.0</p>
+    <p class="meta">DPDP Section 8(6) compliance</p>
+
+    <h2>Summary</h2>
+    <p>Data lifecycle policy defining retention periods, deletion triggers, and cryptographic erasure procedures across profile data, consent logs, and operational telemetry.</p>
+
+    <h2>Key Highlights</h2>
+    <ul>
+      <li>Retention only for required business and legal purposes.</li>
+      <li>Automatic purging on account deletion, direct record deletion, inactivity, or retention expiry.</li>
+      <li>Cryptographic erasure and rolling backup overwrite.</li>
+      <li>Auditability for consent and compliance records.</li>
+    </ul>
+
+    <h2>Retention Schedule Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Examples</th>
+          <th>Retention Period</th>
+          <th>Basis</th>
+          <th>Deletion Trigger</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Account Master Data</td>
+          <td>User ID, full name, email, phone, authentication metadata</td>
+          <td>Active account lifetime plus 2 years post-dormancy</td>
+          <td>Service provision, identity management, dispute defense</td>
+          <td>Account deletion or 24 months inactivity</td>
+        </tr>
+        <tr>
+          <td>Address Data</td>
+          <td>Saved home, office, delivery addresses</td>
+          <td>Active account lifetime plus 2 years post-last usage</td>
+          <td>Consent autofill and user convenience</td>
+          <td>Direct address deletion or account deletion</td>
+        </tr>
+        <tr>
+          <td>Consent Records and Ledger</td>
+          <td>App ID, scopes, timestamps, revoke status</td>
+          <td>Minimum 3 years from grant or revocation event</td>
+          <td>DPDP accountability and audit proof</td>
+          <td>Expiry of 3-year audit window unless legal hold applies</td>
+        </tr>
+        <tr>
+          <td>Authentication and Security Logs</td>
+          <td>Login timestamps, IP, user-agent, MFA telemetry</td>
+          <td>1 to 2 years rolling</td>
+          <td>Fraud prevention and forensics</td>
+          <td>Automated rotation after 730 days</td>
+        </tr>
+        <tr>
+          <td>API Usage and Developer Logs</td>
+          <td>Request metadata, endpoint telemetry, latency</td>
+          <td>1 to 3 years</td>
+          <td>Billing and rate-limit auditing</td>
+          <td>Automated purge at retention boundary</td>
+        </tr>
+        <tr>
+          <td>Support Tickets and Correspondence</td>
+          <td>Grievance emails, support tickets, chat logs</td>
+          <td>2 to 3 years from resolution</td>
+          <td>Support continuity and legal defense</td>
+          <td>Purge 3 years after resolution</td>
+        </tr>
+        <tr>
+          <td>Encrypted Disaster Recovery Backups</td>
+          <td>Production datastore snapshots</td>
+          <td>30-day rolling cycle</td>
+          <td>Disaster recovery and continuity</td>
+          <td>Automatic cryptographic overwrite on cycle expiry</td>
+        </tr>
+        <tr>
+          <td>Anonymized Aggregate Telemetry</td>
+          <td>Aggregate usage trends and MAU metrics</td>
+          <td>Indefinite after irreversible anonymization</td>
+          <td>Product analytics and benchmarking</td>
+          <td>Not applicable</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>1. Purpose and Scope</h2>
+    <p>This policy standardizes retention, archival, and secure disposal across production databases, telemetry pipelines, cloud infrastructure, and backups in line with DPDP Act Section 8(6).</p>
+
+    <h2>2. Core Retention Principles</h2>
+    <ul>
+      <li>Purpose limitation: data kept only as long as required for its original purpose.</li>
+      <li>Storage minimization: avoid indefinite retention and use shortest practical compliant duration.</li>
+      <li>Proactive disposal: erase or irreversibly anonymize after purpose completion or legal retention expiry.</li>
+    </ul>
+
+    <h2>3. Deletion and Cryptographic Erasure Procedures</h2>
+    <ul>
+      <li>Logical invalidation from active APIs and auth gates.</li>
+      <li>Primary physical purge from operational databases.</li>
+      <li>Backup expungement through rolling encrypted backup cycles.</li>
+      <li>Irreversible anonymization for long-term aggregate telemetry.</li>
+    </ul>
+
+    <h2>4. Legal Holds and Regulatory Exceptions</h2>
+    <p>Records may be temporarily retained beyond baseline schedules for legal obligations, court orders, investigations, or imminent legal claims. Standard schedules resume once the hold is lifted.</p>
+
+    <h2>5. Policy Governance and Periodic Review</h2>
+    <p>This policy is reviewed annually by the Data Protection Officer and Legal Counsel. Updates are published with incremented versioning when legal or regulatory requirements evolve.</p>
+  </section>
+</main>
+</body>
+</html>
