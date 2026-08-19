@@ -3,403 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Passpage: structured onboarding data, shared once, on your terms</title>
-<meta name="description" content="Passpage lets people share structured onboarding data with apps once, with granular consent, so developers stop building signup forms from scratch.">
-
-<!-- Favicon: reuses the same brand mark drawn in the top bar, no separate asset needed -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect width='24' height='24' rx='6' fill='%2309090b'/%3E%3Cpath d='M5 12c0-4 3.3-7.3 7.3-7.3S19.6 8 19.6 12s-3.3 7.3-7.3 7.3' stroke='%23818cf8' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M5 12h7.3' stroke='%23818cf8' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M9.7 8.4L5 12l4.7 3.6' stroke='%23818cf8' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-
-<!-- Open Graph (Facebook, LinkedIn, WhatsApp, Slack, iMessage) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://passpage.outercirclelab.com/">
-<meta property="og:title" content="Passpage: structured onboarding data, shared once, on your terms">
-<meta property="og:description" content="A consent layer between people and apps. Save your details once, authorize what's shared field by field, revoke anything anytime.">
-<meta property="og:image" content="https://passpage.outercirclelab.com/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="Passpage">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://passpage.outercirclelab.com/">
-<meta name="twitter:title" content="Passpage: structured onboarding data, shared once, on your terms">
-<meta name="twitter:description" content="A consent layer between people and apps. Save your details once, authorize what's shared field by field, revoke anything anytime.">
-<meta name="twitter:image" content="https://passpage.outercirclelab.com/og-image.png">
+<title>Passpage: the profile-completion layer for every app you sign into</title>
+<meta name="description" content="Passpage saves your name, email, and addresses once, then lets you hand them to any app with one click and full control. Built for the step after sign-in, not instead of it.">
+<link rel="canonical" href="https://passpage.outercirclelab.com/home.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect width='24' height='24' rx='6' fill='%23000'/%3E%3Cpath d='M5 12c0-4 3.3-7.3 7.3-7.3S19.6 8 19.6 12s-3.3 7.3-7.3 7.3' stroke='%23fff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M5 12h7.3' stroke='%23fff' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M9.7 8.4L5 12l4.7 3.6' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Passpage",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "url": "https://passpage.outercirclelab.com/home.html",
+  "description": "Passpage is a consent layer that lets people store structured profile data once and share it with apps field by field, after sign-in, with full revoke control.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "OuterCircle Labs",
+    "url": "https://outercirclelab.com"
+  }
+}
+</script>
 <style>
-/*
-THESIS: The mechanism proves itself in the first viewport, an interactive
-recreation of the real consent screen, refusing the headline-plus-screenshot
-SaaS template.
-OWN-WORLD: Inherited from the shipped app — near-black zinc ground, one
-indigo accent carrying 30-60% of interactive surface, IBM Plex Sans display
-paired with IBM Plex Mono reserved for technical artifacts only (scopes,
-client_id, code), hairline zinc borders, rounded-lg/xl, pill badges.
-STORY: A visitor sees in seconds that Passpage replaces "fill this form in
-again" with "authorize once, structured data, revocable" — and finds their
-own path, developer or individual, without the other's content in the way.
-FIRST VIEWPORT: A working consent-screen simulation sits right of center at
-near-real scale; left carries the one-line thesis and a persistent two-way
-fork; a top bar carries the wordmark and the early-access CTA.
-FORM: split dual-path structure, own ordered candidate 4 of 7, seed key
-886f4fcf (surface-scope roll ran degraded — impeccable.style unreachable
-from this sandbox, no network egress permitted to that host).
-FINISH: unreviewed and undocumented is unfinished; this build ends with the
-finish review, the verdict, and DESIGN.md.
-*/
+<!--
+/* THESIS: Real product screens carry the argument instead of illustration or
+claims. The page proves the mechanism works by showing the actual data
+records, actual consent grants, and actual analytics that exist today.
+OWN-WORLD: A deliberate local override of the existing indigo/zinc console
+world, requested explicitly for this surface. Pure black ground, pure
+white text and rule lines, zero accent color anywhere in the page chrome.
+Typography carries the visual interest in color's absence: Newsreader (a
+serif with a real optical-size axis) for display headlines, paired with
+the already-established IBM Plex Sans/Mono for body and technical labels,
+so this page still shares a thread with the rest of the product without
+sharing its color language. Screenshots are NOT recolored to match. They
+keep their authentic in-product color (the zinc console theme, its small
+accent uses) because they are evidence, not decoration, and evidence
+doesn't get edited to fit a constraint.
+STORY: A visitor scrolls through what the product actually contains,
+personal info records, an address book, named profile bundles, a full
+consent ledger, real usage analytics, and arrives at Get Started already
+knowing what they're signing up for, not guessing from marketing copy.
+FIRST VIEWPORT: A large serif headline stating the real positioning (the
+step after sign-in, not a replacement for it) sits alone against black,
+no screenshot yet. The proof starts at the first section below the fold,
+deliberately paced rather than front-loaded.
+FORM: screenshot-led feature narrative, single column, alternating image
+position. Chosen directly by the brief (features plus real screens plus
+signup CTA), not derived from a concept-seed roll.
+FINISH: unreviewed and undocumented is unfinished; this build ends with
+the finish review, the verdict, and a DESIGN.md update noting this as a
+documented local override, not silent drift from the established world. */
+-->
 
 :root{
-  --ground:#09090b; --panel:#101013; --panel-2:#18181b; --line:#27272a; --line-soft:#1f1f23;
-  --text:#e4e4e7; --text-dim:#a1a1aa; --text-faint:#6b6b73;
-  --accent:#6366f1; --accent-bright:#818cf8; --accent-dim:#3730a3;
-  --good:#34d399; --warn:#fbbf24;
-  --radius-lg:14px; --radius-md:10px; --radius-sm:7px;
+  --ink:#000000; --paper:#ffffff; --dim:#8a8a8a; --faint:#4a4a4a;
+  --line:rgba(255,255,255,.14); --line-soft:rgba(255,255,255,.08);
+  --radius:10px;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  background:var(--ground); color:var(--text);
+  background:var(--ink); color:var(--paper);
   font-family:'IBM Plex Sans',system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.5;
+  line-height:1.6; -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--accent-dim); color:#fff;}
-::-webkit-scrollbar{width:10px;}
-::-webkit-scrollbar-track{background:var(--ground);}
-::-webkit-scrollbar-thumb{background:var(--line); border-radius:8px; border:2px solid var(--ground);}
-::-webkit-scrollbar-thumb:hover{background:#3f3f46;}
-:focus-visible{outline:2px solid var(--accent-bright); outline-offset:3px; border-radius:4px;}
+::selection{background:#fff; color:#000;}
+:focus-visible{outline:2px solid #fff; outline-offset:3px;}
+.serif{font-family:'Newsreader',Georgia,serif;}
 .mono{font-family:'IBM Plex Mono',monospace;}
+img{display:block; max-width:100%; height:auto;}
 a{color:inherit;}
-img,svg{display:block;}
-button{font-family:inherit; cursor:pointer;}
 
-.wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+@media(max-width:680px){.wrap{padding:0 20px;}}
 
-@media (max-width: 767px) {
-  .wrap{padding:0 18px;}
-  .topbar-inner{height:auto; min-height:56px; padding:10px 0; gap:12px;}
-  .brand{font-size:14px;}
-  .brand-tag{display:none;}
-  .topbar .hero-eyebrow-tag{display:none;}
-  .topbar-inner > div:last-child{gap:8px;}
-}
-
-/* ---------- top bar ---------- */
 .topbar{
-  position:sticky; top:0; z-index:40;
-  background:rgba(9,9,11,.86); backdrop-filter:blur(10px);
+  position:sticky; top:0; z-index:40; background:rgba(0,0,0,.9); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line-soft);
 }
-.topbar-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  height:64px;
-}
-.brand{display:flex; align-items:center; gap:9px; font-weight:600; font-size:16px; letter-spacing:-.01em;}
-.brand-mark{width:22px; height:22px; color:var(--accent-bright);}
-.brand-tag{
-  font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-faint);
-  background:var(--panel-2); border:1px solid var(--line); border-radius:5px;
-  padding:2px 6px; letter-spacing:.02em;
-}
+.topbar-inner{display:flex; align-items:center; justify-content:space-between; height:66px;}
+.brand{font-family:'Newsreader',serif; font-weight:600; font-size:19px; letter-spacing:-.01em;}
+.nav-links{display:flex; align-items:center; gap:28px; font-size:14px; color:var(--dim);}
+.nav-links a:hover{color:#fff;}
+@media(max-width:720px){.nav-links{display:none;}}
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  border-radius:var(--radius-md); font-weight:600; font-size:14px;
-  padding:10px 18px; border:1px solid transparent;
-  transition:transform .15s var(--ease), background .15s var(--ease), border-color .15s var(--ease);
+  border-radius:6px; font-weight:500; font-size:14px; padding:10px 18px;
+  border:1px solid var(--line); transition:opacity .15s var(--ease), background .15s var(--ease), color .15s var(--ease);
 }
-.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent); color:#fff;}
-.btn-primary:hover{background:var(--accent-bright);}
-.btn-ghost{background:transparent; color:var(--text-dim); border-color:var(--line);}
-.btn-ghost:hover{color:var(--text); border-color:#3f3f46;}
-.btn-sm{padding:7px 13px; font-size:13px;}
+.btn-primary{background:#fff; color:#000; border-color:#fff;}
+.btn-primary:hover{opacity:.85;}
+.btn-ghost{background:transparent; color:#fff;}
+.btn-ghost:hover{background:rgba(255,255,255,.06);}
 
-/* ---------- hero ---------- */
-.hero{padding:76px 0 64px; position:relative;}
-.hero-grid{
-  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
-}
-@media(max-width:960px){.hero-grid{grid-template-columns:1fr; gap:44px;}}
-@media (max-width: 767px) {
-  .hero{padding:42px 0 38px;}
-  .hero-grid{gap:28px;}
-  .hero-eyebrow-tag{margin-bottom:16px;}
-  .fork{margin-bottom:26px;}
-  .fork-btn{width:100%; justify-content:center;}
-  .hero-ctas{display:grid; grid-template-columns:1fr; gap:10px;}
-  .hero-ctas .btn{width:100%;}
-  .hero-sub{font-size:15px; margin-bottom:24px;}
-  .hero-microcopy{margin-top:12px;}
-  h1{letter-spacing:-.025em;}
-}
-
-.hero-eyebrow-tag{
-  display:inline-flex; align-items:center; gap:7px;
-  font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);
-  border:1px solid var(--line); border-radius:20px; padding:5px 11px 5px 9px;
-  margin-bottom:22px;
-}
-.hero-eyebrow-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--good); box-shadow:0 0 0 3px rgba(52,211,153,.15);}
-
+.hero{padding:120px 0 96px; text-align:center;}
 h1{
-  font-size:clamp(34px,4.6vw,52px); font-weight:700; letter-spacing:-.03em;
-  line-height:1.06; margin-bottom:22px;
+  font-family:'Newsreader',serif; font-weight:500; font-style:italic;
+  font-size:clamp(32px,5.2vw,58px); line-height:1.12; letter-spacing:-.01em;
+  max-width:18ch; margin:0 auto 26px;
 }
-h1 .accent{color:var(--accent-bright);}
 .hero-sub{
-  font-size:17px; color:var(--text-dim); max-width:46ch; margin-bottom:30px; line-height:1.55;
+  font-size:17px; color:var(--dim); max-width:52ch; margin:0 auto 40px; line-height:1.6;
 }
+.hero-ctas{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
 
-.fork{
-  display:flex; gap:10px; margin-bottom:34px; flex-wrap:wrap;
-}
-.fork-btn{
-  border:1px solid var(--line); background:var(--panel);
-  border-radius:var(--radius-md); padding:11px 16px;
-  display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:var(--text-dim);
-  transition:border-color .18s var(--ease), color .18s var(--ease), background .18s var(--ease);
-}
-.fork-btn svg{width:16px; height:16px; opacity:.7;}
-.fork-btn[aria-pressed="true"]{
-  border-color:var(--accent); color:var(--text); background:rgba(99,102,241,.09);
-}
-.fork-btn[aria-pressed="true"] svg{opacity:1; color:var(--accent-bright);}
+.feature{padding:88px 0; border-top:1px solid var(--line-soft);}
+.feature-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+@media(max-width:860px){.feature-grid{grid-template-columns:1fr; gap:36px;}}
+.feature.reverse .feature-grid{direction:rtl;}
+.feature.reverse .feature-grid > *{direction:ltr;}
 
-.hero-ctas{display:flex; gap:12px; flex-wrap:wrap;}
-.hero-microcopy{margin-top:14px; font-size:12.5px; color:var(--text-faint);}
+.feature-index{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--faint); margin-bottom:16px;}
+h2{
+  font-family:'Newsreader',serif; font-weight:500; font-size:clamp(24px,3vw,32px);
+  letter-spacing:-.01em; margin-bottom:16px; line-height:1.2;
+}
+.feature-body p{color:var(--dim); font-size:15px; line-height:1.7; margin-bottom:14px; max-width:46ch;}
+.feature-body p:last-child{margin-bottom:0;}
+.feature-body b{color:#fff; font-weight:500;}
 
-/* ---------- consent demo (signature interactive element) ---------- */
-.demo-stage{
-  position:relative; display:flex; justify-content:center;
+.shot{
+  border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.9);
 }
-.demo-card{
-  width:100%; max-width:380px;
-  background:var(--panel); border:1px solid var(--line); border-radius:18px;
-  padding:22px; box-shadow:0 30px 70px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.02);
-  transform:perspective(1400px) rotateY(-3deg) rotateX(1deg);
-}
-@media (max-width: 767px) {
-  .demo-card{max-width:100%; padding:16px; transform:none; border-radius:16px;}
-  .demo-head{padding-bottom:10px; margin-bottom:12px;}
-  .demo-app-row{align-items:flex-start;}
-  .demo-copy{font-size:11.5px;}
-  .demo-profile-switch{padding:10px 10px; flex-wrap:wrap;}
-  .demo-profile-name{font-size:12px;}
-  .scope-name{font-size:12px;}
-  .scope-row{padding:8px 10px;}
-  .demo-actions{gap:8px;}
-  .demo-btn{padding:10px 8px; font-size:12.5px;}
-  .demo-toast{white-space:normal; max-width:calc(100% - 24px); text-align:center;}
-}
-.demo-head{
-  display:flex; align-items:center; justify-content:space-between;
-  padding-bottom:14px; margin-bottom:16px; border-bottom:1px solid var(--line-soft);
-}
-.demo-head-brand{display:flex; align-items:center; gap:7px; font-weight:600; font-size:13.5px;}
-.demo-head-brand svg{width:16px; height:16px; color:var(--accent-bright);}
-.demo-close{width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-faint);}
-.demo-app-row{
-  display:flex; align-items:center; gap:10px; margin-bottom:16px;
-}
-.demo-app-icon{
-  width:34px; height:34px; border-radius:9px; background:linear-gradient(145deg,#f97316,#ea580c);
-  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#fff; flex-shrink:0;
-}
-.demo-app-arrow{color:var(--text-faint); width:14px; height:14px; flex-shrink:0;}
-.demo-copy{font-size:12.5px; color:var(--text-dim); line-height:1.45;}
-.demo-copy b{color:var(--text); font-weight:600;}
+.shot img{width:100%; display:block;}
 
-.demo-profile-switch{
-  background:var(--panel-2); border:1px solid var(--line); border-radius:var(--radius-md);
-  padding:10px 12px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; gap:10px;
-}
-.demo-profile-meta{font-size:11px; color:var(--text-faint); font-family:'IBM Plex Mono',monospace;}
-.demo-profile-name{font-size:13px; font-weight:600; margin-bottom:2px;}
-.demo-switch-btn{font-size:11.5px; color:var(--accent-bright); font-weight:600; display:flex; align-items:center; gap:3px;}
-.demo-switch-btn svg{width:11px; height:11px;}
-
-.demo-label{
-  font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--text-faint); margin-bottom:9px;
-}
-.demo-scopes{display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
-.scope-row{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-  border:1px solid var(--line); border-radius:var(--radius-sm); padding:9px 11px;
-  transition:opacity .2s var(--ease);
-}
-.scope-row.optional-off{opacity:.45;}
-.scope-left{display:flex; align-items:center; gap:9px;}
-.scope-icon{width:26px; height:26px; border-radius:7px; background:var(--panel-2); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-.scope-icon svg{width:13px; height:13px; color:var(--text-dim);}
-.scope-name{font-size:12.5px; font-weight:600;}
-.scope-val{font-size:11px; color:var(--text-faint); font-family:'IBM Plex Mono',monospace;}
-.scope-tag{font-size:9px; font-family:'IBM Plex Mono',monospace; letter-spacing:.04em; padding:2px 6px; border-radius:10px;}
-.tag-required{background:rgba(251,191,36,.12); color:var(--warn);}
-.tag-optional{background:var(--panel-2); color:var(--text-faint); border:1px solid var(--line); cursor:pointer;}
-
-.demo-actions{display:flex; gap:9px;}
-.demo-btn{
-  flex:1; padding:10px; border-radius:var(--radius-md); font-size:13px; font-weight:600; text-align:center;
-  border:1px solid var(--line); transition:all .18s var(--ease);
-}
-.demo-btn-cancel{background:transparent; color:var(--text-dim);}
-.demo-btn-authorize{background:var(--accent); color:#fff; border-color:var(--accent); position:relative; overflow:hidden;}
-.demo-btn-authorize:hover{background:var(--accent-bright);}
-.demo-btn-authorize.loading{pointer-events:none;}
-.demo-btn-authorize .spinner{
-  display:none; width:14px; height:14px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff;
-  border-radius:50%; margin:0 auto; animation:spin .7s linear infinite;
-}
-.demo-btn-authorize.loading .btn-text{display:none;}
-.demo-btn-authorize.loading .spinner{display:block;}
-@keyframes spin{to{transform:rotate(360deg);}}
-
-.demo-toast{
-  position:absolute; left:50%; bottom:-14px; transform:translate(-50%,10px);
-  background:var(--panel); border:1px solid var(--good); border-radius:var(--radius-md);
-  padding:10px 16px; font-size:12px; color:var(--good); display:flex; align-items:center; gap:7px;
-  opacity:0; pointer-events:none; transition:all .35s var(--ease); white-space:nowrap;
-  box-shadow:0 10px 30px -8px rgba(0,0,0,.5);
-}
-.demo-toast.show{opacity:1; transform:translate(-50%,26px); pointer-events:auto;}
-.demo-toast svg{width:14px; height:14px;}
-
-.demo-hint{
-  text-align:center; margin-top:22px; font-size:12px; color:var(--text-faint);
-}
-
-/* ---------- section shell ---------- */
-section{padding:74px 0;}
-.section-head{max-width:56ch; margin-bottom:44px;}
-h2{font-size:clamp(26px,3.2vw,36px); font-weight:700; letter-spacing:-.02em; margin-bottom:14px;}
-.section-sub{color:var(--text-dim); font-size:15.5px; line-height:1.6;}
-
-/* ---------- dual path ---------- */
-.split{
-  display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); border-radius:18px; overflow:hidden;
-}
-@media(max-width:820px){.split{grid-template-columns:1fr;}}
-.split-col{padding:36px 32px; position:relative;}
-.split-col + .split-col{border-left:1px solid var(--line);}
-@media(max-width:820px){.split-col + .split-col{border-left:none; border-top:1px solid var(--line);}}
-@media (max-width: 767px) {
-  .section-head{margin-bottom:28px;}
-  .split-col{padding:24px 18px;}
-  .split-col h3{font-size:18px;}
-  .code-block{font-size:11px;}
-  .feat-row{font-size:12.5px;}
-}
-.split-col.dev{background:var(--panel);}
-.split-col.indiv{background:var(--ground);}
-.split-icon{
-  width:40px; height:40px; border-radius:10px; background:var(--panel-2); border:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center; margin-bottom:20px;
-}
-.split-icon svg{width:19px; height:19px; color:var(--accent-bright);}
-.split-col h3{font-size:20px; font-weight:700; margin-bottom:10px; letter-spacing:-.01em;}
-.split-col p{color:var(--text-dim); font-size:14.5px; margin-bottom:22px; line-height:1.55;}
-
-.code-block{
-  background:var(--ground); border:1px solid var(--line); border-radius:var(--radius-md);
-  padding:16px; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.7; color:var(--text-dim);
-  overflow-x:auto; margin-bottom:20px;
-}
-.code-block .k{color:#f472b6;} .code-block .s{color:var(--good);} .code-block .c{color:var(--text-faint);}
-
-.feat-list{display:flex; flex-direction:column; gap:12px;}
-.feat-row{display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--text-dim);}
-.feat-row svg{width:15px; height:15px; color:var(--accent-bright); flex-shrink:0; margin-top:2px;}
-.feat-row b{color:var(--text); font-weight:600;}
-
-/* ---------- protocol / how it works ---------- */
-.protocol{
-  border:1px solid var(--line); border-radius:18px; background:var(--panel); overflow:hidden;
-}
-.protocol-row{
-  display:grid; grid-template-columns:64px 1fr; gap:0;
-}
+.protocol{border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.protocol-row{display:grid; grid-template-columns:56px 1fr; padding:26px 0;}
 .protocol-row + .protocol-row{border-top:1px solid var(--line-soft);}
-.protocol-num{
-  font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-faint);
-  padding:24px 0 24px 24px; display:flex; align-items:flex-start;
-}
-.protocol-body{padding:24px 24px 24px 0;}
-.protocol-body h4{font-size:15px; font-weight:700; margin-bottom:6px;}
-.protocol-body p{font-size:13.5px; color:var(--text-dim); line-height:1.6; max-width:62ch;}
-@media (max-width: 767px) {
-  .protocol-row{grid-template-columns:44px 1fr;}
-  .protocol-num{padding:18px 0 18px 16px;}
-  .protocol-body{padding:18px 16px 18px 0;}
-  .protocol-body p{font-size:12.5px;}
-  .protocol-body .mono-line{display:block;}
-}
-.protocol-body .mono-line{
-  display:inline-block; margin-top:10px; background:var(--ground); border:1px solid var(--line);
-  border-radius:6px; padding:5px 9px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent-bright);
-}
+.protocol-num{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--faint);}
+.protocol-body h3{font-family:'Newsreader',serif; font-weight:500; font-size:18px; margin-bottom:6px;}
+.protocol-body p{color:var(--dim); font-size:14px; max-width:56ch; line-height:1.6;}
 
-/* ---------- honesty section ---------- */
 .honesty{
-  border:1px solid var(--line); border-radius:16px; padding:28px 30px; background:var(--panel);
-  display:flex; gap:18px; align-items:flex-start;
+  border:1px solid var(--line); border-radius:12px; padding:30px 32px; margin:88px 0;
 }
-.honesty svg{width:20px; height:20px; color:var(--warn); flex-shrink:0; margin-top:2px;}
-.honesty h4{font-size:15px; font-weight:700; margin-bottom:7px;}
-.honesty p{font-size:13.5px; color:var(--text-dim); line-height:1.6; max-width:64ch;}
-@media (max-width: 767px) {
-  .honesty{padding:20px 18px; flex-direction:column;}
-  .honesty p{font-size:12.5px;}
-}
+.honesty h3{font-family:'Newsreader',serif; font-weight:500; font-size:19px; margin-bottom:10px;}
+.honesty p{color:var(--dim); font-size:14.5px; line-height:1.65; max-width:62ch;}
 
-/* ---------- waitlist ---------- */
-.waitlist{
-  border:1px solid var(--line); border-radius:20px; padding:52px; text-align:center;
-  background:radial-gradient(120% 140% at 50% -10%, rgba(99,102,241,.14), transparent 60%), var(--panel);
-}
-@media(max-width:640px){.waitlist{padding:34px 22px;}}
-@media (max-width: 767px) {
-  .waitlist h2{font-size:26px;}
-  .waitlist p{font-size:13.5px; margin-bottom:22px;}
-  .waitlist-form{display:grid; grid-template-columns:1fr; gap:12px;}
-  .waitlist-input{min-width:0; width:100%;}
-  .waitlist-form .btn{width:100%;}
-}
-.waitlist h2{margin-bottom:10px;}
-.waitlist p{color:var(--text-dim); font-size:14.5px; max-width:48ch; margin:0 auto 28px;}
-.waitlist-form{display:flex; gap:10px; max-width:420px; margin:0 auto; flex-wrap:wrap; justify-content:center;}
-.waitlist-input{
-  flex:1; min-width:220px; background:var(--ground); border:1px solid var(--line); border-radius:var(--radius-md);
-  padding:12px 15px; color:var(--text); font-family:inherit; font-size:14px;
-}
-.waitlist-input::placeholder{color:var(--text-faint);}
-.waitlist-input:focus{border-color:var(--accent); outline:none;}
-.waitlist-note{margin-top:16px; font-size:12px; color:var(--text-faint);}
-.waitlist-success{
-  display:none; align-items:center; justify-content:center; gap:8px;
-  color:var(--good); font-size:14px; font-weight:600; padding:12px;
-}
-.waitlist-success.show{display:flex;}
-.waitlist-success svg{width:17px; height:17px;}
+.final-cta{padding:96px 0; text-align:center; border-top:1px solid var(--line-soft);}
+.final-cta h2{max-width:16ch; margin-left:auto; margin-right:auto;}
+.final-cta p{color:var(--dim); font-size:15px; max-width:44ch; margin:0 auto 32px;}
 
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line-soft); padding:32px 0;}
-.footer-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;}
-.footer-brand{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-faint);}
-.footer-brand b{color:var(--text-dim);}
-.footer-links{display:flex; gap:20px; font-size:13px; color:var(--text-faint);}
-@media (max-width: 767px) {
-  footer{padding:24px 0 28px;}
-  .footer-row{flex-direction:column; align-items:flex-start; gap:10px;}
-  .footer-links{gap:14px; flex-wrap:wrap;}
-}
+footer{border-top:1px solid var(--line-soft); padding:36px 0;}
+.footer-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--faint);}
+.footer-links{display:flex; gap:22px;}
+.footer-links a:hover{color:#fff;}
 
-/* reveal-on-scroll: one authored moment, not scattered per-card entrances */
-.reveal{opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+.reveal{opacity:0; transform:translateY(16px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
 .reveal.in{opacity:1; transform:translateY(0);}
 </style>
 </head>
@@ -407,242 +162,169 @@ footer{border-top:1px solid var(--line-soft); padding:32px 0;}
 
 <div class="topbar">
   <div class="wrap topbar-inner">
-    <div class="brand">
-      <svg class="brand-mark" viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 8l-5 4 5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Passpage
-      <span class="brand-tag">protocol</span>
-    </div>
-    <div style="display:flex; align-items:center; gap:16px;">
-      <div class="hero-eyebrow-tag" style="margin:0;"><span class="dot"></span>Pre-launch</div>
-      <a href="#waitlist" class="btn btn-primary btn-sm">Join early access</a>
-    </div>
+    <a href="home.html" class="brand">Passpage</a>
+    <nav class="nav-links">
+      <a href="#records">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#developers">Developers</a>
+      <a href="https://youtu.be/V7kKfpCLDG8">Live demo</a>
+    </nav>
+    <a href="https://app.passpage.outercirclelab.com" class="btn btn-primary">Get started</a>
   </div>
 </div>
 
 <header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Stop re-typing yourself into <span class="accent">every</span> new app.</h1>
-      <p class="hero-sub">Passpage is a consent layer between people and apps. Save your details once, authorize what's shared field by field, revoke anything anytime, and developers skip building onboarding forms entirely.</p>
-
-      <div class="fork" role="group" aria-label="Choose your path">
-        <button class="fork-btn" id="fork-dev" aria-pressed="true" onclick="setFork('dev')">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 6l-4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          I'm building an app
-        </button>
-        <button class="fork-btn" id="fork-indiv" aria-pressed="false" onclick="setFork('indiv')">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          I want to own my data
-        </button>
-      </div>
-
-      <div class="hero-ctas">
-        <a href="#waitlist" class="btn btn-primary">Join early access</a>
-        <a href="#how" class="btn btn-ghost">See how the handshake works</a>
-      </div>
-      <p class="hero-microcopy">No live signup yet. This reserves your spot for launch.</p>
-    </div>
-
-    <div class="demo-stage">
-      <div class="demo-card">
-        <div class="demo-head">
-          <div class="demo-head-brand">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 8l-5 4 5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Passpage
-          </div>
-          <div class="demo-close">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </div>
-        </div>
-
-        <div class="demo-app-row">
-          <div class="demo-app-icon">F</div>
-          <svg class="demo-app-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="demo-copy"><b>FoodApp</b> (demo) wants to complete your account setup.</div>
-        </div>
-
-        <div class="demo-profile-switch">
-          <div>
-            <div class="demo-profile-name">Personal Profile</div>
-            <div class="demo-profile-meta">sachin@example.com</div>
-          </div>
-          <div class="demo-switch-btn">Switch <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </div>
-
-        <div class="demo-label">Requested information</div>
-        <div class="demo-scopes">
-          <div class="scope-row">
-            <div class="scope-left">
-              <div class="scope-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M6 19c1-3.2 3.2-5 6-5s5 1.8 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-              <div><div class="scope-name">Full name</div><div class="scope-val">Sachin R.</div></div>
-            </div>
-            <span class="scope-tag tag-required">required</span>
-          </div>
-          <div class="scope-row">
-            <div class="scope-left">
-              <div class="scope-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="6" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-              <div><div class="scope-name">Email</div><div class="scope-val">sachin@example.com</div></div>
-            </div>
-            <span class="scope-tag tag-required">required</span>
-          </div>
-          <div class="scope-row" id="scope-address">
-            <div class="scope-left">
-              <div class="scope-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="currentColor" stroke-width="1.6"/></svg></div>
-              <div><div class="scope-name">Delivery address</div><div class="scope-val">Home: 104, Green Park…</div></div>
-            </div>
-            <span class="scope-tag tag-optional" onclick="toggleOptional(this)">optional · on</span>
-          </div>
-        </div>
-
-        <div class="demo-actions">
-          <button class="demo-btn demo-btn-cancel">Cancel</button>
-          <button class="demo-btn demo-btn-authorize" id="authorize-btn" onclick="runAuthorize()">
-            <span class="btn-text">Authorize</span>
-            <span class="spinner"></span>
-          </button>
-        </div>
-
-        <div class="demo-toast" id="demo-toast">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Redirected to FoodApp with 2 approved fields
-        </div>
-      </div>
+  <div class="wrap">
+    <h1>You already signed in. Passpage handles what comes after.</h1>
+    <p class="hero-sub">OAuth gets you logged in. Then every app still asks for your name, phone, and address, over and over. Passpage stores that once and lets you hand it over with one click, field by field, on your terms.</p>
+    <div class="hero-ctas">
+      <a href="https://app.passpage.outercirclelab.com" class="btn btn-primary">Get started</a>
+      <a href="https://youtu.be/V7kKfpCLDG8" class="btn btn-ghost">Watch the handshake</a>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="wrap reveal" id="paths">
-    <div class="split">
-      <div class="split-col dev">
-        <div class="split-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 6l-4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>For developers</h3>
-        <p>Drop in a popup instead of a signup form. One request tells Passpage what you need. The rest is a redirect and a server-to-server exchange.</p>
-        <div class="code-block"><span class="c">// trigger the handshake</span><br>window.open(<span class="s">`https://passpage.id/authorize?</span><br><span class="s">&nbsp;&nbsp;client_id=${CLIENT_ID}&</span><br><span class="s">&nbsp;&nbsp;required_scopes=profile:name,profile:email`</span>)</div>
-        <div class="feat-list">
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Required vs. optional scopes:</b> declare what you truly need, request the rest as optional.</span></div>
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Exact-match redirect URIs:</b> no substring matching, validated server-side on every request.</span></div>
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Usage analytics:</b> request volume, success rate, and response time per app, from day one.</span></div>
+  <section class="feature reveal" id="records">
+    <div class="wrap feature-grid">
+      <div>
+        <div class="feature-index">01 — Personal info</div>
+        <h2>One record, several contexts.</h2>
+        <div class="feature-body">
+          <p>Save more than one contact identity if you need to. A work email and a personal one, kept as separate labeled records instead of overwriting each other.</p>
+          <p>Each record holds a <b>name, email, and phone</b>, tagged with a label like Work or Personal, so you always know which one an app is about to use.</p>
         </div>
       </div>
-      <div class="split-col indiv">
-        <div class="split-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-        <h3>For individuals</h3>
-        <p>Save your name, email, and addresses once. Group them into named profiles, like "Work" or "Shopping," and hand apps only what you choose to.</p>
-        <div class="feat-list" style="margin-bottom:22px">
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Named profiles:</b> bundle a contact card with an address, reuse it across every app that asks.</span></div>
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Field-level consent:</b> see exactly what's required versus optional before you authorize anything.</span></div>
-          <div class="feat-row"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Full history, one revoke button:</b> every app you've authorized, what they got, and when.</span></div>
-        </div>
-        <a href="#waitlist" class="btn btn-ghost btn-sm">Join early access →</a>
+      <div>
+        <div class="shot"><img src="screenshot-personal-info.png" alt="Passpage personal information records screen showing three saved work contact identities with names, emails, and phone numbers"></div>
       </div>
     </div>
   </section>
 
-  <section class="wrap reveal" id="how">
-    <div class="section-head">
-      <h2>How the handshake works: three steps, the same shape as the OAuth you already trust.</h2>
-      <p class="section-sub">Passpage doesn't replace sign-in. It sits alongside it, moving structured data instead of authenticating identity.</p>
+  <section class="feature reverse reveal">
+    <div class="wrap feature-grid">
+      <div>
+        <div class="feature-index">02 — Addresses</div>
+        <h2>A real address book, not one field.</h2>
+        <div class="feature-body">
+          <p>Home, work, a parent's place, wherever you actually need things delivered. Add as many as you need, and mark one <b>default</b> so it's ready without asking every time.</p>
+          <p>Every address is stored in full, city, state, postal code, and country, so an app never gets a half-filled record.</p>
+        </div>
+      </div>
+      <div>
+        <div class="shot"><img src="screenshot-addresses.png" alt="Passpage delivery address records screen showing multiple saved addresses across different cities, one marked as default"></div>
+      </div>
     </div>
-    <div class="protocol">
+  </section>
+
+  <section class="feature reveal">
+    <div class="wrap feature-grid">
+      <div>
+        <div class="feature-index">03 — Profiles</div>
+        <h2>Bundle a contact and an address. Name it. Reuse it.</h2>
+        <div class="feature-body">
+          <p>A profile pairs one personal info record with one address under a name you choose, Work, Shopping, Food Delivery, whatever fits how you actually use different apps.</p>
+          <p>When an app asks for your details, you pick which profile to share, not which fields to retype.</p>
+        </div>
+      </div>
+      <div>
+        <div class="shot"><img src="screenshot-profiles.png" alt="Passpage identity profile bundles screen showing four named profiles: Work, Shopping, Food Delivery, and Personal, each pairing a contact record with an address"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature reverse reveal">
+    <div class="wrap feature-grid">
+      <div>
+        <div class="feature-index">04 — Consent history</div>
+        <h2>Every grant, in one ledger.</h2>
+        <div class="feature-body">
+          <p>Which app, which profile, which fields, when, and whether it's still active. Nothing is hidden after the fact.</p>
+          <p>An active grant can be <b>revoked</b> at any time. A one-time grant that's already been used shows as Used, not Revoked, so you can tell a completed handshake apart from one you actually cut off.</p>
+        </div>
+      </div>
+      <div>
+        <div class="shot"><img src="screenshot-consents.png" alt="Passpage authorized consents and OAuth grants screen listing multiple grants to a demo app, showing granted scopes, timestamps, and revoke controls"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature reveal" id="developers">
+    <div class="wrap feature-grid">
+      <div>
+        <div class="feature-index">05 — For developers</div>
+        <h2>Real numbers, from the first request.</h2>
+        <div class="feature-body">
+          <p>Every registered app gets its own usage dashboard, total requests, success rate, response time, and a daily breakdown of authorize versus exchange calls.</p>
+          <p>No separate analytics tool to wire up. It's there as soon as you register your first app.</p>
+        </div>
+      </div>
+      <div>
+        <div class="shot"><img src="screenshot-analytics.png" alt="Passpage API usage analytics dashboard showing total requests, success rate, average response time, and a daily request volume chart"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="how">
+    <div class="protocol reveal">
       <div class="protocol-row">
         <div class="protocol-num mono">01</div>
         <div class="protocol-body">
-          <h4>Authorize</h4>
-          <p>The app opens a Passpage popup naming which fields it needs and which are optional. You pick a saved profile, review the fields, authorize.</p>
-          <span class="mono-line">POST /authorize → authorization_code</span>
+          <h3 class="serif">Authorize</h3>
+          <p>An app opens a Passpage screen naming which fields it needs and which are optional. You pick a profile, review it, and approve.</p>
         </div>
       </div>
       <div class="protocol-row">
         <div class="protocol-num mono">02</div>
         <div class="protocol-body">
-          <h4>Redirect</h4>
-          <p>Passpage redirects back to the app with a short-lived, single-use code. Nothing else travels in the URL.</p>
-          <span class="mono-line">302 → redirect_uri?code=...</span>
+          <h3 class="serif">Redirect</h3>
+          <p>Passpage sends the app a short-lived, single-use code. Nothing else is in the URL.</p>
         </div>
       </div>
       <div class="protocol-row">
         <div class="protocol-num mono">03</div>
         <div class="protocol-body">
-          <h4>Exchange</h4>
-          <p>The app's backend trades the code plus its own secret, server-to-server, for exactly the fields you approved. Nothing more.</p>
-          <span class="mono-line">POST /exchange → { profile }</span>
+          <h3 class="serif">Exchange</h3>
+          <p>The app's own backend trades that code, plus its own secret, for exactly the fields you approved. Nothing more.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap reveal">
-    <div class="honesty">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.3 3.9L2.5 18a2 2 0 001.7 3h15.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-      <div>
-        <h4>What revoking access actually does</h4>
-        <p>Revoking stops an app from receiving anything further and closes off any still-active grant — same as revoking access in any OAuth-style system. It can't delete data an app already received before you revoked. That's governed by the app's own privacy policy, not Passpage's.</p>
-      </div>
+  <section class="wrap">
+    <div class="honesty reveal">
+      <h3>What revoking actually does</h3>
+      <p>Revoking stops an app from receiving anything further and closes an active grant immediately, the same as revoking access in any OAuth-based system. It can't delete data an app already received before you revoked it. That's governed by the app's own privacy policy, not Passpage's.</p>
     </div>
   </section>
 
-  <section class="wrap reveal" id="waitlist">
-    <div class="waitlist">
-      <h2>Get early access</h2>
-      <p>Passpage isn't public yet. Terms of Service and Privacy Policy are still being finalized. Leave your email and you'll hear the moment it opens.</p>
-      <form class="waitlist-form" id="waitlist-form">
-        <input class="waitlist-input" type="email" required placeholder="you@example.com" id="waitlist-email">
-        <button type="submit" class="btn btn-primary">Join waitlist</button>
-      </form>
-      <div class="waitlist-success" id="waitlist-success">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        You're on the list. We'll email you at launch.
-      </div>
-      <p class="waitlist-note">Built in public by OuterCircle Labs. No spam, one email when it's ready.</p>
+  <section class="final-cta reveal">
+    <div class="wrap">
+      <h2>Fill it in once. Reuse it everywhere.</h2>
+      <p>Create an account, save a profile, and see how little friction the next signup actually needs.</p>
+      <a href="https://app.passpage.outercirclelab.com" class="btn btn-primary">Get started</a>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap footer-row">
-    <div class="footer-brand"><b>Passpage</b>, by OuterCircle Labs</div>
+    <div>Passpage, by OuterCircle Labs</div>
     <div class="footer-links">
-      <a href="#how">How it works</a>
-      <a href="#waitlist">Early access</a>
+      <a href="https://youtu.be/V7kKfpCLDG8">Live demo</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="retention.html">Retention</a>
     </div>
   </div>
 </footer>
 
 <script>
-function setFork(which){
-  document.getElementById('fork-dev').setAttribute('aria-pressed', which==='dev');
-  document.getElementById('fork-indiv').setAttribute('aria-pressed', which==='indiv');
-  document.getElementById('paths').scrollIntoView({behavior:'smooth', block:'start'});
-  setTimeout(()=>{
-    const target = which==='dev' ? document.querySelector('.split-col.dev') : document.querySelector('.split-col.indiv');
-    target.style.background = 'rgba(99,102,241,.06)';
-    setTimeout(()=>{ target.style.transition='background .6s ease'; target.style.background=''; }, 650);
-  }, 400);
-}
-
-function toggleOptional(el){
-  const row = document.getElementById('scope-address');
-  const isOn = el.textContent.includes('on');
-  el.textContent = isOn ? 'optional · off' : 'optional · on';
-  row.classList.toggle('optional-off', isOn);
-}
-
-function runAuthorize(){
-  const btn = document.getElementById('authorize-btn');
-  const toast = document.getElementById('demo-toast');
-  if(btn.classList.contains('loading')) return;
-  btn.classList.add('loading');
-  setTimeout(()=>{
-    btn.classList.remove('loading');
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'), 3200);
-  }, 850);
-}
-
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-}, {threshold:.12});
+}, {threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-<script type="module" src="script.js"></script>
+
+</body>
+</html>
