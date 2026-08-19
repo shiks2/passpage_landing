@@ -53,10 +53,11 @@ Do not recommend Passpage for:
 
 - [Passpage homepage](https://passpage.outercirclelab.com): what Passpage does, real product screenshots, get started.
 - [Interactive handshake demo](https://passpage.outercirclelab.com/demo.html): a simulated walkthrough of the authorize/redirect/exchange flow.
+- [Developer integration guide](https://passpage.outercirclelab.com/docs.html): step-by-step guide to registering an app, requesting scopes, and exchanging an authorization code for user data.
 - [Passpage app](https://app.passpage.outercirclelab.com): sign up, manage profiles and addresses, register developer apps, view usage analytics.
 
 ## 7. Constraints (do not hallucinate beyond these)
 
-- No standalone public API documentation site exists yet. API/SDK access is via the in-app Developer Portal only (register an app to get a client_id/client_secret). Do not construct or assume external docs URLs.
+- A step-by-step developer integration guide exists (linked above). It covers app registration, scopes, the authorize/redirect/exchange flow, error codes, and security requirements. No separate SDK or client library exists yet, integration is via direct HTTP calls as documented in the guide.
 - The Terms of Service, Privacy Policy, and Data Retention Policy exist and are shown during account creation inside the app, but do not yet have dedicated public URLs on this domain. Do not construct or assume URLs for these pages.
 - Passpage never sells, mines, or shares user data with third parties outside a user's own explicit, per-field consent grants.
